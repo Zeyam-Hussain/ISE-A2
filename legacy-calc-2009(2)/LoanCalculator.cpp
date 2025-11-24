@@ -1,9 +1,10 @@
 #include<iostream>
+#include<cmath>
 
 using namespace std;
 
 int main(){
-    double loan_amount,interest_rate,number_of_years,total_amount,monthly_amount;
+    long double loan_amount,interest_rate,number_of_years,total_amount,monthly_amount;
 
     cout<<"Enter the loan amount: ";
     cin>>loan_amount;
@@ -29,11 +30,14 @@ int main(){
     }
     cout<<endl;
 
-    total_amount=(number_of_years*loan_amount)+(number_of_years*loan_amount*(interest_rate/100.00));
-    monthly_amount=total_amount/(number_of_years*12);
+    long double annual_interest_rate = interest_rate / 100.0L;
+    long double total_interest_factor = number_of_years * annual_interest_rate;
+    
+    total_amount = loan_amount + (loan_amount * total_interest_factor);
+    monthly_amount = total_amount / (number_of_years * 12.0L);
 
     cout<<"Total amount to be paid: "<<total_amount<<endl;
-    cout<<"Total interest: "<<total_amount-(number_of_years*loan_amount)<<endl;
+    cout<<"Total interest: "<<total_amount - loan_amount<<endl;
     cout<<"Monthly amount to be paid: "<<monthly_amount<<endl;
 
     return 0;
