@@ -1,18 +1,15 @@
 #include <iostream>
+#include <iomanip>
 #include "Loan.h"
 #include "Utils.h"
-
 using namespace std;
-
 int main() {
     long double default_loan = 10000.0L;
     long double default_rate = 5.0L;
     long double default_years = 5.0L;
 
-    // Read config.txt
     readConfig(default_loan, default_rate, default_years);
 
-    // Read input using helper function
     long double loan_amount = readValueWithDefault("Enter loan amount", default_loan);
     while (loan_amount <= 0) {
         cout << "Invalid. Enter positive value: ";
@@ -34,13 +31,33 @@ int main() {
         cin.ignore(10000, '\n');
     }
 
-    // Create Loan object
     Loan loan(loan_amount, interest_rate, years);
 
-    // Output results
-    cout << "Total amount to be paid: " << loan.getTotalAmount() << endl;
-    cout << "Total interest: " << loan.getTotalInterest() << endl;
-    cout << "Monthly payment: " << loan.getMonthlyPayment() << endl;
+    cout << fixed << setprecision(2);
+
+    cout << "\n================ Loan Summary ================\n";
+
+    cout << left << setw(30) << "Loan Amount:" 
+         << loan_amount << endl;
+
+    cout << left << setw(30) << "Interest Rate (%):" 
+         << interest_rate << endl;
+
+    cout << left << setw(30) << "Number of Years:" 
+         << years << endl;
+
+    cout << "----------------------------------------------\n";
+
+    cout << left << setw(30) << "Total Amount to Pay:" 
+         << loan.getTotalAmount() << endl;
+
+    cout << left << setw(30) << "Total Interest:" 
+         << loan.getTotalInterest() << endl;
+
+    cout << left << setw(30) << "Monthly Payment:" 
+         << loan.getMonthlyPayment() << endl;
+
+    cout << "==============================================\n";
 
     return 0;
 }
