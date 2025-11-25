@@ -1,9 +1,14 @@
+/**
+ * @file main.cpp
+ * @brief Main loan calculator application
+ */
 #include <iostream>
 #include <iomanip>
 #include "loan.h"
 #include "utils.h"
 using namespace std;
 
+/// @brief Main function - entry point of application
 int main() {
     long double default_loan = 10000.0L;
     long double default_rate = 5.0L;
