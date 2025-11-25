@@ -6,4 +6,6 @@
 void readConfig(long double &loan, long double &rate, long double &years);
 long double readValueWithDefault(const std::string& prompt, long double default_value);
 
+void readConfigFromStream(std::istream& input, long double &loan, long double &rate, long double &years);
+
 #endif

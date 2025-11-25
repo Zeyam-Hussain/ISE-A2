@@ -2,16 +2,22 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
 void readConfig(long double &loan, long double &rate, long double &years) {
     ifstream config("config.txt");
+    readConfigFromStream(config, loan, rate, years);
+}
+
+// Helper function for testing - allows passing stringstream instead of file
+void readConfigFromStream(std::istream& input, long double &loan, long double &rate, long double &years) {
     string line;
     int count = 0;
 
-    if (config.is_open()) {
-        while (getline(config, line) && count < 3) {
+    if (input) {
+        while (getline(input, line) && count < 3) {
             try {
                 if (!line.empty()) {
                     long double value = stold(line);
@@ -24,7 +30,6 @@ void readConfig(long double &loan, long double &rate, long double &years) {
             }
             count++;
         }
-        config.close();
     }
 }
 
