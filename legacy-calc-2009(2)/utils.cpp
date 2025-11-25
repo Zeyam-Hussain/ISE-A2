@@ -1,4 +1,4 @@
-#include "Utils.h"
+#include "utils.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -19,9 +19,12 @@ void readConfig(long double &loan, long double &rate, long double &years) {
                     else if (count == 1 && value >= 0) rate = value;
                     else if (count == 2 && value > 0) years = value;
                 }
-            } catch (...) {}
+            } catch (...) {
+                // Keep original values if conversion fails
+            }
             count++;
         }
+        config.close();
     }
 }
 
@@ -37,8 +40,7 @@ long double readValueWithDefault(const string& prompt, long double default_value
     }
 
     try {
-        long double v = stold(input);
-        return v;
+        return stold(input);
     } catch (...) {
         cout << "Invalid input. Using default value: " << default_value << endl;
         return default_value;

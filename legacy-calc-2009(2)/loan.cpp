@@ -1,9 +1,7 @@
-#include "Loan.h"
+#include "loan.h"
 
-Loan::Loan(long double amount, long double rate, long double yrs) {
-    loan_amount = amount;
-    interest_rate = rate;
-    years = yrs;
+Loan::Loan(long double amount, long double rate, long double yrs) 
+    : loan_amount(amount), interest_rate(rate), years(yrs) {
 }
 
 long double Loan::getTotalAmount() const {
